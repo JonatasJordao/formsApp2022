@@ -1,5 +1,11 @@
-.visual {
+.center{
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
 
+}
 
-  text-align: center;
+ion-card{
+  width: 80%;
 }
