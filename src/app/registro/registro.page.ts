@@ -9,20 +9,49 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class RegistroPage implements OnInit {
 
-  FormRegistro: FormGroup;
+  formRegistro: FormGroup;
+
+
+  mensagens={
+    email: [
+      {tipo:'required', mensagem:'o campo é obrigatório'},
+      {tipo:'email', mensagem:'email inválido'}
+    ],
+    senha:[
+      {tipo:'required',mensagem:'campo obrigatório'},
+      {tipo:'minlength',mensagem:'o campo deve conter no mínino 3 caracteres'}
+    ],
+    nome:[
+      {tipo:'required', mensagem:'campo obrigatório'},
+      {tipo:'minlength', mensagem:'o campo deve conter no mínimo 3 caracteres'}
+    ],
+    cpf:[
+      {tipo:'required', mensagem:'o campo é obrigatório'},
+      {tipo:'minlength', mensagem:'o campo deve conter no mínimo 11 caracteres'},
+      {tipo: 'maxlength', mensagem:'o campo deve conter no máximo 11 caracteres'}
+    ],
+    confirmaSenha:[
+      {tipo:'required', mensagem:'o campo é obrigatório'},
+    {tipo:'minlength', mensagem:'o campo deve conter no mínimo 3 caracteres'}
+    ]
+  };
 
   constructor(private formBuilder: FormBuilder) {
-    this.FormRegistro = this.formBuilder.group({
+    this.formRegistro = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      cpf: ['', Validators.compose([Validators.required])],
-      email: ['', Validators.compose([Validators.required])],
-      senha: ['', Validators.compose([Validators.required])],
-      confirmaSenha: ['', Validators.compose([Validators.required])]
+      senha:['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      email:['', Validators.compose([Validators.required, Validators.email])],
+      cpf:['', Validators.compose([Validators.required,Validators.maxLength(11),Validators.minLength(11)])],
+      confirmaSenha:['',Validators.compose([Validators.required, Validators.minLength(3)])]
 
     });
    }
 
   ngOnInit() {
+  }
+
+  salvarRegistro(){
+    console.log('Formulário: ', this.formRegistro.valid);
   }
 
 }

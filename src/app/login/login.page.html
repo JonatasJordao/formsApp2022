@@ -9,16 +9,32 @@
 <div class="center">
   <ion-card class="ion-text-center">
   <ion-item  >
-   <ion-label position="floating">E-mail:</ion-label>
-   <ion-input type="email" ></ion-input>
+   <ion-label position="stacked">E-mail:</ion-label>
+   <ion-input  type="email" ></ion-input>
+
+   <ng-container *ngFor="let erro of mensagens.email">
+    <span
+      *ngIf="formLogin.get('email').hasError(erro.tipo) && (formLogin.get('email').dirty || formLogin.get('email').touched )"
+      class="msg-erro">
+      {{erro.mensagem}}
+    </span>
+  </ng-container>
  </ion-item>
  <ion-item  >
-   <ion-label position="floating">senha:</ion-label>
+   <ion-label position="stacked">senha:</ion-label>
    <ion-input type="password" ></ion-input>
+   <ng-container *ngFor="let erro of mensagens.senha">
+    <span
+    *ngIf="formLogin.get('senha').hasError(erro.tipo) && (formLogin.get('senha').dirty || formLogin.get('senha').touched )"
+    class="msg-erro">
+      {{erro.mensagem}}
+    </span>
+  </ng-container>
  </ion-item>
  <ion-button   expand="full" color="cor1" >ENTRAR</ion-button>
  <ion-button routerLink="/registro" expand="full" color="cor1"  >REGISTRAR</ion-button>
  <ion-button expand="full" color="cor1" >ESQUECI MINHA SENHA</ion-button>
+ <ion-button routerLink="/produtos" expand="full" color="cor1" >produtos</ion-button>
  </ion-card>
 </div>
 </ion-content>
