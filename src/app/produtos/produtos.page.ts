@@ -11,7 +11,7 @@ export class ProdutosPage implements OnInit {
 
   formProduto: FormGroup;
 
-  mensagens1={
+  mensagens={
     nome: [
       {tipo:'required', mensagem:' campo é obrigatório'},
     ],

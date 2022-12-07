@@ -1,37 +1,72 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="cor1" >
     <ion-title>produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="cor1">
+
+  <form [formGroup]="formProduto">
   <ion-card class="center">
     <ion-list>
       <ion-item>
         <ion-label position="stacked">NOME:</ion-label>
-        <ion-input placeholder="nome"></ion-input>
+        <ion-input formControlName="nome"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.nome">
+
+          <span
+          *ngIf="formProduto.get('nome').hasError(erro.tipo) && (formProduto.get('nome').dirty || formProduto.get('nome').touched )"
+          class="msg-erro">
+            {{erro.mensagem}}
+          </span>
+        </ng-container>
       </ion-item>
 
 
 
     <ion-item>
       <ion-label position="stacked">DESCRIÇÃO::</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="descricao"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.descricao">
+
+        <span
+        *ngIf="formProduto.get('descricao').hasError(erro.tipo) && (formProduto.get('descricao').dirty || formProduto.get('descricao').touched )"
+        class="msg-erro">
+          {{erro.mensagem}}
+        </span>
+      </ng-container>
     </ion-item>
 
       <ion-item>
         <ion-label position="stacked">VALIDADE: </ion-label>
-        <ion-input type="email" placeholder="email@domain.com"></ion-input>
+        <ion-input formControlName="dataValidade"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.dataValidade">
+
+          <span
+          *ngIf="formProduto.get('dataValidade').hasError(erro.tipo) && (formProduto.get('dataValidade').dirty || formProduto.get('dataValidade').touched )"
+          class="msg-erro">
+            {{erro.mensagem}}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked">PREÇO:</ion-label>
-        <ion-input type="password" value="password"></ion-input>
+        <ion-input formControlName="preco"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.preco">
+
+          <span
+          *ngIf="formProduto.get('preco').hasError(erro.tipo) && (formProduto.get('preco').dirty || formProduto.get('preco').touched )"
+          class="msg-erro">
+            {{erro.mensagem}}
+          </span>
+        </ng-container>
       </ion-item>
 
-      <ion-button routerLink="/"  expand="full" color="cor1" >SALVAR</ion-button>
+      <ion-button routerLink="/" (click)="salvarProduto()" expand="full" color="cor1" >SALVAR</ion-button>
       <ion-button routerLink="/login" expand="full" color="cor1" >VOLTAR</ion-button>
 
     </ion-list>
   </ion-card>
+  </form>
 </ion-content>

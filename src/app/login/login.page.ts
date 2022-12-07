@@ -24,11 +24,9 @@ export class LoginPage implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder) {
-
     this.formLogin = this.formBuilder.group({
-
-      senha:['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      email:['', Validators.compose([Validators.required, Validators.email])]
+      email:['', Validators.compose([Validators.required, Validators.email])],
+      senha:['', Validators.compose([Validators.required, Validators.minLength(3)])]
 
 
     });
